@@ -51,9 +51,9 @@ In Kubernetes, nodes are the individual machines that make up the cluster. Each 
 
 1. Install Kind and download Docker Desktop
 
-2. Run brew install kind on your terminal
+2. Run brew install kind on your terminal(for mac laptop)
 
-3. Launch and sign in to your Docker Desktop
+3. Launch and sign into your Docker Desktop
 
 4. Create kind-config.yaml file
 
@@ -75,32 +75,47 @@ code kind-config.yaml
 kind get clusters
 ```
 
+7. Check the cluster information using kubectl:
+```
+kubectl cluster-info --context kind-terraform-kubernetes-demo
+```
+
 ![K8s nodes](./img/8.png)
 
-7. Check the cluster information using kubectl:
-   kubectl cluster-info --context kind-terraform-kubernetes-demo
+8. Create the Terraform configuration file in Visual Studio Code:
 
 ![K8s nodes](./img/9.png)
-
-9. Create the Terraform configuration file in Visual Studio Code:
 
 ```
 code kubernetes.tf
 ```
 
-Viewed the Kubernetes configuration for the Kind cluster:
+9. View the Kubernetes configuration for the Kind cluster:
+
+```
 kubectl config view --minify --flatten --context=kind-terraform-kubernetes-demo
+```
 
-Created a Terraform variables file (terraform.tfvars):
+![K8s nodes](./img/10.png)
+
+10. Create a Terraform variables file (terraform.tfvars):
+
+```
 code terraform.tfvars
+```
 
-Listed the files in the current directory again:
-ls
+![K8s nodes](./img/11.png)
 
-Formatted the Terraform configuration:
+
+11. Formatted the Terraform configuration:
 terraform fmt
 
-Initialized the Terraform configuration:
-terraform init
+12. Initialized the Terraform configuration:
 
-I have set up a local Kubernetes cluster using Kind, configured it with Terraform, and initialized Terraform for managing Kubernetes resources# -Creating-and-Managing-Kubernetes-Cluster-using-Kind-and-Terraform
+```
+terraform init
+```
+
+![K8s nodes](./img/11.png)
+
+> I have set up a local Kubernetes cluster using Kind, configured it with Terraform, and initialized Terraform for managing Kubernetes resources
