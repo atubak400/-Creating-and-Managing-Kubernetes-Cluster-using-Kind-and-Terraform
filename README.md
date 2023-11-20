@@ -117,5 +117,3 @@ terraform init
 ```
 
 ![K8s nodes](./img/12.png)
-
-> I have set up a local Kubernetes cluster using Kind, configured it with Terraform, and initialized Terraform for managing Kubernetes resources
