@@ -84,11 +84,11 @@ kubectl cluster-info --context kind-terraform-kubernetes-demo
 
 8. Create the Terraform configuration file in Visual Studio Code:
 
-![K8s nodes](./img/9.png)
-
 ```
 code kubernetes.tf
 ```
+
+![K8s nodes](./img/9.png)
 
 9. View the Kubernetes configuration for the Kind cluster:
 
@@ -116,6 +116,6 @@ terraform fmt
 terraform init
 ```
 
-![K8s nodes](./img/11.png)
+![K8s nodes](./img/12.png)
 
 > I have set up a local Kubernetes cluster using Kind, configured it with Terraform, and initialized Terraform for managing Kubernetes resources
