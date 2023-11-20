@@ -108,7 +108,12 @@ code terraform.tfvars
 
 
 11. Format the Terraform configuration:
+
+`terraform fmt` is a command used to automatically format Terraform configuration files, ensuring consistent and standardized code layout. It helps maintain readability and collaboration by enforcing a uniform coding style across the project, making it easier for teams to manage and understand the infrastructure code.
+
+```
 terraform fmt
+```
 
 12. Initialize the Terraform configuration:
 
