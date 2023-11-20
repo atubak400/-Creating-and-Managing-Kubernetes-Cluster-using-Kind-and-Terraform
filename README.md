@@ -98,7 +98,7 @@ kubectl config view --minify --flatten --context=kind-terraform-kubernetes-demo
 
 ![K8s nodes](./img/10.png)
 
-10. Create a Terraform variables file (terraform.tfvars):
+10. Create a Terraform variables file with values gotten from step 9 and variable names from step 8:
 
 ```
 code terraform.tfvars
