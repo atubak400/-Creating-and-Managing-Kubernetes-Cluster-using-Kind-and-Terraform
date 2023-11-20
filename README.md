@@ -107,10 +107,10 @@ code terraform.tfvars
 ![K8s nodes](./img/11.png)
 
 
-11. Formatted the Terraform configuration:
+11. Format the Terraform configuration:
 terraform fmt
 
-12. Initialized the Terraform configuration:
+12. Initialize the Terraform configuration:
 
 ```
 terraform init
