@@ -61,6 +61,18 @@ In Kubernetes, nodes are the individual machines that make up the cluster. Each 
 code kind-config.yaml
 ```
 
+```
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30201
+        hostPort: 30201
+        listenAddress: "0.0.0.0"
+```
+
+
 ![K8s nodes](./img/5.png)
 
 5. Created a local Kubernetes cluster named "terraform-kubernetes-demo" using a custom configuration file:
@@ -87,6 +99,39 @@ kubectl cluster-info --context kind-terraform-kubernetes-demo
 ```
 code kubernetes.tf
 ```
+```
+terraform {
+  required_providers {
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+    }
+  }
+}
+
+variable "host" {
+  type = string
+}
+
+variable "client_certificate" {
+  type = string
+}
+
+variable "client_key" {
+  type = string
+}
+
+variable "cluster_ca_certificate" {
+  type = string
+}
+
+provider "kubernetes" {
+  host = var.host
+
+  client_certificate     = base64decode(var.client_certificate)
+  client_key             = base64decode(var.client_key)
+  cluster_ca_certificate = base64decode(var.cluster_ca_certificate)
+}
+```
 
 ![K8s nodes](./img/9.png)
 
@@ -102,6 +147,19 @@ kubectl config view --minify --flatten --context=kind-terraform-kubernetes-demo
 
 ```
 code terraform.tfvars
+```
+
+```
+# terraform.tfvars
+
+host = "https://127.0.0.1:50435"
+
+client_certificate = "<put your client-certificate-data from step 9 here>"
+
+client_key = "<put your client-key-data from step 9 here>"
+
+cluster_ca_certificate = "<put your certificate-authority-data from step 9 here>"
+
 ```
 
 ![K8s nodes](./img/11.png)
