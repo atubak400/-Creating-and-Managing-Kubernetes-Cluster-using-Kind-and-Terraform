@@ -320,3 +320,4 @@ terraform apply
 ```
 
 ![K8s nodes](./img/18.png)
+![K8s nodes](./img/19.png)
