@@ -260,3 +260,31 @@ terraform validate
 ```
 
 ![K8s nodes](./img/13.png)
+
+15. Format, validate and apply the Terraform configuration:
+
+`terraform validate` is used in Terraform to check the syntax and integrity of your Terraform configuration files. This command ensures that the configuration is syntactically valid and internally consistent.
+
+```
+terraform fmt
+```
+
+```
+terraform validate
+```
+
+```
+terraform apply
+```
+
+![K8s nodes](./img/13.png)
+![K8s nodes](./img/14.png)
+![K8s nodes](./img/15.png)
+
+16. Confirm that the scalable-nginx-example deployment in Kubernetes is running successfully with 2 ready replicas by running:
+
+```
+kubectl get deployments 
+```
+
+![K8s nodes](./img/16.png)
