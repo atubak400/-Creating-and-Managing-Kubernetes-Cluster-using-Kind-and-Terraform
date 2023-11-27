@@ -278,8 +278,8 @@ terraform apply
 ```
 
 ![K8s nodes](./img/13.png)
-![K8s nodes](./img/15.png)
 ![K8s nodes](./img/14.png)
+![K8s nodes](./img/15.png)
 
 16. Confirm that the scalable-nginx-example deployment in Kubernetes is running successfully with 2 ready replicas by running:
 
