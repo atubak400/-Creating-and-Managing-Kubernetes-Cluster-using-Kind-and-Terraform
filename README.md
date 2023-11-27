@@ -62,7 +62,7 @@ In Kubernetes, nodes are the individual machines that make up the cluster. Each 
 code kind-config.yaml
 ```
 
-* paste this code 
+- paste this code
 
 ```
 kind: Cluster
@@ -74,7 +74,6 @@ nodes:
         hostPort: 30201
         listenAddress: "0.0.0.0"
 ```
-
 
 ![K8s nodes](./img/5.png)
 
@@ -104,7 +103,7 @@ kubectl cluster-info --context kind-terraform-kubernetes-demo
 code kubernetes.tf
 ```
 
-* paste this code 
+- paste this code
 
 ```
 terraform {
@@ -156,7 +155,7 @@ kubectl config view --minify --flatten --context=kind-terraform-kubernetes-demo
 code terraform.tfvars
 ```
 
-* paste this code 
+- paste this code
 
 ```
 # terraform.tfvars
@@ -172,7 +171,6 @@ cluster_ca_certificate = "<put your certificate-authority-data from step 9 here>
 ```
 
 ![K8s nodes](./img/11.png)
-
 
 11. Format the Terraform configuration:
 
@@ -196,7 +194,7 @@ terraform init
 code resource_nginx.tf
 ```
 
-* paste this code 
+- paste this code
 
 ```
 resource "kubernetes_deployment" "nginx" {
@@ -270,7 +268,7 @@ terraform apply
 15. Confirm that the scalable-nginx-example deployment in Kubernetes is running successfully with 2 ready replicas by running:
 
 ```
-kubectl get deployments 
+kubectl get deployments
 ```
 
 ![K8s nodes](./img/16.png)
@@ -281,7 +279,7 @@ kubectl get deployments
 code service_nginx.tf
 ```
 
-* paste this code 
+- paste this code
 
 ```
 resource "kubernetes_service" "nginx" {
@@ -321,3 +319,63 @@ terraform apply
 
 ![K8s nodes](./img/18.png)
 ![K8s nodes](./img/19.png)
+
+18. Confirm that nginx-example NodePort service is running by running:
+
+```
+kubectl get deployments
+```
+
+![K8s nodes](./img/20.png)
+
+19. To lists all pods in the current Kubernetes namespace with status, run:
+
+```
+kubectl get pods
+```
+
+20. To scale scalable-nginx-example deployment from 2 to 4 pods with no restarts., run:
+
+```
+kubectl scale deployment scalable-nginx-example --replicas=4
+```
+
+![K8s nodes](./img/21.png)
+
+or edit `resource_nginx.tf`
+
+![K8s nodes](./img/22.png)
+
+and run
+
+```
+terraform apply
+```
+
+21. Confirm number of pods by running:
+
+```
+kubectl get pods
+```
+
+![K8s nodes](./img/23.png)
+
+21. Confirm nginx service is reachable on port 30201 by visiting:
+
+```
+http://localhost:30201/
+```
+
+![K8s nodes](./img/24.png)
+
+22. To remove all resources managed by your Terraform configuration
+
+```
+terraform destroy
+```
+
+![K8s nodes](./img/25.png)
+![K8s nodes](./img/26.png)
+
+
+# Congratulations!!
