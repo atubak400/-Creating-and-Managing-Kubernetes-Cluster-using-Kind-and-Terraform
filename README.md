@@ -189,3 +189,74 @@ terraform init
 ```
 
 ![K8s nodes](./img/12.png)
+
+13. Create a Terraform configuration file that sets up a Kubernetes deployment for running two replicas of an Nginx server
+
+```
+code resource_nginx.tf
+```
+
+* paste this code 
+
+```
+resource "kubernetes_deployment" "nginx" {
+  metadata {
+    name = "scalable-nginx-example"
+    labels = {
+      App = "ScalableNginxExample"
+    }
+  }
+
+  spec {
+    replicas = 2
+    selector {
+      match_labels = {
+        App = "ScalableNginxExample"
+      }
+    }
+    template {
+      metadata {
+        labels = {
+          App = "ScalableNginxExample"
+        }
+      }
+      spec {
+        container {
+          image = "nginx:1.7.8"
+          name  = "example"
+
+          port {
+            container_port = 80
+          }
+
+          resources {
+            limits = {
+              cpu    = "0.5"
+              memory = "512Mi"
+            }
+            requests = {
+              cpu    = "250m"
+              memory = "50Mi"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+```
+
+14. Format and validate the Terraform configuration:
+
+`terraform validate` is used in Terraform to check the syntax and integrity of your Terraform configuration files. This command ensures that the configuration is syntactically valid and internally consistent.
+
+```
+terraform fmt
+```
+
+```
+terraform validate
+```
+
+![K8s nodes](./img/13.png)
