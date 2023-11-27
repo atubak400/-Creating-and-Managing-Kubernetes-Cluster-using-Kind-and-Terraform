@@ -247,21 +247,7 @@ resource "kubernetes_deployment" "nginx" {
 
 ```
 
-14. Format and validate the Terraform configuration:
-
-`terraform validate` is used in Terraform to check the syntax and integrity of your Terraform configuration files. This command ensures that the configuration is syntactically valid and internally consistent.
-
-```
-terraform fmt
-```
-
-```
-terraform validate
-```
-
-![K8s nodes](./img/13.png)
-
-15. Format, validate and apply the Terraform configuration:
+14. Format, validate and apply the Terraform configuration:
 
 `terraform validate` is used in Terraform to check the syntax and integrity of your Terraform configuration files. This command ensures that the configuration is syntactically valid and internally consistent.
 
@@ -281,10 +267,56 @@ terraform apply
 ![K8s nodes](./img/14.png)
 ![K8s nodes](./img/15.png)
 
-16. Confirm that the scalable-nginx-example deployment in Kubernetes is running successfully with 2 ready replicas by running:
+15. Confirm that the scalable-nginx-example deployment in Kubernetes is running successfully with 2 ready replicas by running:
 
 ```
 kubectl get deployments 
 ```
 
 ![K8s nodes](./img/16.png)
+
+16. Create a Terraform configuration file that creates a Kubernetes NodePort service to expose the Nginx deployment externally on port 30201
+
+```
+code service_nginx.tf
+```
+
+* paste this code 
+
+```
+resource "kubernetes_service" "nginx" {
+  metadata {
+    name = "nginx-example"
+  }
+  spec {
+    selector = {
+      App = kubernetes_deployment.nginx.spec.0.template.0.metadata[0].labels.App
+    }
+    port {
+      node_port   = 30201
+      port        = 80
+      target_port = 80
+    }
+
+    type = "NodePort"
+  }
+}
+```
+
+![K8s nodes](./img/17.png)
+
+17. Format, validate and apply the Terraform configuration:
+
+```
+terraform fmt
+```
+
+```
+terraform validate
+```
+
+```
+terraform apply
+```
+
+![K8s nodes](./img/18.png)
